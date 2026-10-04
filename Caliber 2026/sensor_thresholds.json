@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "description": "Ambang per-parameter (DUMMY) untuk Alarm Board ML. Terpisah dari thresholds.json agar backtest Tahap 2B tidak berubah.",
+    "is_dummy": true,
+    "repair_ttt_hours": 168,
+    "mild_drift_z": 1.5,
+    "supporting_z": 2.0
+  },
+  "assets": {
+    "KO-3201": {
+      "asset_name": "Cracked Gas Compressor", "plant": "ZCU", "cls": "Class A",
+      "load_label": "Plant Rate", "load_unit": "T/H", "load_mean": 55.0,
+      "parameters": {
+        "vib_de": {"label": "DE Radial Vibration", "unit": "µm", "baseline_min": 25.0, "baseline_max": 30.0, "alert": 45.0, "trip": 75.0,
+                   "failure_mode": "Ketidakstabilan rotor / kerusakan babbitt bearing akibat film oli melemah"},
+        "bearing_temp": {"label": "Journal Bearing Temp", "unit": "°C", "baseline_min": 82.0, "baseline_max": 88.0, "alert": 95.0, "trip": 115.0,
+                   "failure_mode": "Panas berlebih pada journal bearing (pelumasan terdegradasi)"},
+        "water_in_oil": {"label": "Water-in-Oil", "unit": "ppm", "baseline_min": 60.0, "baseline_max": 100.0, "alert": 500.0, "trip": 1000.0,
+                   "failure_mode": "Kontaminasi air pada oli pelumas (indikasi kebocoran tube lube oil cooler)"}
+      }
+    },
+    "BL-5702": {
+      "asset_name": "Product Blower", "plant": "OPP", "cls": "Class A",
+      "load_label": "Feed Rate", "load_unit": "T/H", "load_mean": 40.0,
+      "parameters": {
+        "vib_overall": {"label": "Coupling Overall Vibration", "unit": "mm/s", "baseline_min": 3.5, "baseline_max": 4.5, "alert": 7.0, "trip": 11.0,
+                   "failure_mode": "Misalignment poros / degradasi kopling (1X & 2X)"},
+        "de_bearing_temp": {"label": "Blower DE Bearing Temp", "unit": "°C", "baseline_min": 65.0, "baseline_max": 70.0, "alert": 75.0, "trip": 90.0,
+                   "failure_mode": "Beban bearing naik akibat misalignment"}
+      }
+    },
+    "PU-2101B": {
+      "asset_name": "Feed Charge Pump", "plant": "ARP", "cls": "Class B",
+      "load_label": "Feed Rate", "load_unit": "T/H", "load_mean": 14.0,
+      "parameters": {
+        "flush_flow": {"label": "Plan 11 Seal Flush Flow", "unit": "L/min", "baseline_min": 6.0, "baseline_max": 6.5, "alert": 4.5, "trip": 3.8,
+                   "failure_mode": "Aliran flush seal tersumbat → dry-running mechanical seal"},
+        "seal_temp": {"label": "Seal Chamber Temp", "unit": "°C", "baseline_min": 60.0, "baseline_max": 66.0, "alert": 75.0, "trip": 90.0,
+                   "failure_mode": "Panas pada muka seal (heat checking)"},
+        "vib": {"label": "Shaft Radial Vibration", "unit": "mm/s", "baseline_min": 2.5, "baseline_max": 3.0, "alert": 4.5, "trip": 7.1,
+                   "failure_mode": "Kavitasi suction / ketidakseimbangan impeller"}
+      }
+    },
+    "HE-3301": {
+      "asset_name": "Feed/Effluent Heat Exchanger", "plant": "ZCU", "cls": "Class B",
+      "load_label": "Feed Rate", "load_unit": "T/H", "load_mean": 120.0,
+      "parameters": {
+        "tube_dp": {"label": "Tube Differential Pressure", "unit": "mbar", "baseline_min": 160.0, "baseline_max": 200.0, "alert": 400.0, "trip": 600.0,
+                   "failure_mode": "Fouling sisi tube (deposit kokas/polimer) → penyumbatan bundle"},
+        "outlet_temp": {"label": "Process Outlet Temp", "unit": "°C", "baseline_min": 190.0, "baseline_max": 196.0, "alert": 180.0, "trip": 170.0,
+                   "failure_mode": "Penurunan heat duty akibat fouling"}
+      }
+    },
+    "PM-4405B": {
+      "asset_name": "Cooling Water Pump Motor", "plant": "NUP", "cls": "Class B",
+      "load_label": "Motor Current", "load_unit": "A", "load_mean": 195.0,
+      "parameters": {
+        "de_bearing_temp": {"label": "DE Bearing Temp", "unit": "°C", "baseline_min": 60.0, "baseline_max": 68.0, "alert": 75.0, "trip": 95.0,
+                   "failure_mode": "Degradasi/karbonisasi grease bearing DE → risiko seizure"},
+        "nde_bearing_temp": {"label": "NDE Bearing Temp", "unit": "°C", "baseline_min": 58.0, "baseline_max": 64.0, "alert": 72.0, "trip": 85.0,
+                   "failure_mode": "Panas bearing NDE (pelumasan kurang)"},
+        "vib": {"label": "Vibration RMS Velocity", "unit": "mm/s", "baseline_min": 3.0, "baseline_max": 3.6, "alert": 4.5, "trip": 7.1,
+                   "failure_mode": "Kerusakan mekanis bearing"}
+      }
+    },
+    "CP-6101": {
+      "asset_name": "Process Air Compressor", "plant": "NUP", "cls": "Class A",
+      "load_label": "Air Flow", "load_unit": "kNm³/h", "load_mean": 100.0,
+      "parameters": {
+        "discharge_temp": {"label": "Discharge Temperature", "unit": "°C", "baseline_min": 55.0, "baseline_max": 59.0, "alert": 65.0, "trip": 80.0,
+                   "failure_mode": "Fouling intercooler / filter intake tersumbat"},
+        "surge_margin": {"label": "Surge Margin", "unit": "%", "baseline_min": 22.0, "baseline_max": 26.0, "alert": 15.0, "trip": 8.0,
+                   "failure_mode": "Mendekati surge akibat koefisien aliran turun"},
+        "vib": {"label": "Vibration RMS", "unit": "mm/s", "baseline_min": 2.8, "baseline_max": 3.4, "alert": 4.5, "trip": 7.1,
+                   "failure_mode": "Kerusakan mekanis rotor"}
+      }
+    },
+    "PU-1021A": {
+      "asset_name": "Reflux Pump Column Feed", "plant": "ZCU", "cls": "Class A",
+      "load_label": "Reflux Flow", "load_unit": "T/H", "load_mean": 30.0,
+      "parameters": {
+        "bearing_vib": {"label": "Bearing Vibration (RMS)", "unit": "mm/s", "baseline_min": 2.6, "baseline_max": 3.2, "alert": 4.5, "trip": 7.1,
+                   "failure_mode": "Cacat outer-race bearing (BPFO) akibat partikel masuk housing"},
+        "suction_dp": {"label": "Suction Basket dP", "unit": "mbar", "baseline_min": 150.0, "baseline_max": 200.0, "alert": 300.0, "trip": 400.0,
+                   "failure_mode": "Saringan suction tersumbat → risiko kavitasi"}
+      }
+    },
+    "CV-4102": {
+      "asset_name": "Boiler Feedwater Control Valve", "plant": "NUP", "cls": "Class B",
+      "load_label": "Steam Load", "load_unit": "T/H", "load_mean": 80.0,
+      "parameters": {
+        "position_fb": {"label": "Valve Position Feedback", "unit": "%", "baseline_min": 45.0, "baseline_max": 55.0, "alert": 85.0, "trip": 95.0,
+                   "failure_mode": "Transmitter posisi macet / valve sticking"},
+        "position_dev": {"label": "Position Deviation", "unit": "%", "baseline_min": 0.8, "baseline_max": 1.4, "alert": 5.0, "trip": 10.0,
+                   "failure_mode": "Histeresis aktuator / keausan packing stem"}
+      }
+    },
+    "EX-1105": {
+      "asset_name": "Propylene Condenser Exchanger", "plant": "OPP", "cls": "Class B",
+      "load_label": "Condensing Load", "load_unit": "T/H", "load_mean": 40.0,
+      "parameters": {
+        "outlet_temp": {"label": "Condensate Outlet Temp", "unit": "°C", "baseline_min": 38.0, "baseline_max": 42.0, "alert": 48.0, "trip": 55.0,
+                   "failure_mode": "Penurunan LMTD / fouling sisi air pendingin"},
+        "cw_voc": {"label": "Return Cooling Water VOC", "unit": "ppm", "baseline_min": 0.5, "baseline_max": 1.5, "alert": 5.0, "trip": 10.0,
+                   "failure_mode": "Kebocoran tube → kontaminasi hidrokarbon di air pendingin"}
+      }
+    },
+    "FV-2208": {
+      "asset_name": "Feed Surge Control Valve", "plant": "ARP", "cls": "Class B",
+      "load_label": "Feed Rate", "load_unit": "T/H", "load_mean": 14.0,
+      "parameters": {
+        "position_dev": {"label": "Position Deviation", "unit": "%", "baseline_min": 1.0, "baseline_max": 1.8, "alert": 5.0, "trip": 15.0,
+                   "failure_mode": "Sinyal 4-20 mA DVC putus-sambung (terminal korosi)"},
+        "supply_press": {"label": "Actuator Supply Press", "unit": "barg", "baseline_min": 4.8, "baseline_max": 5.2, "alert": 4.0, "trip": 3.5,
+                   "failure_mode": "Tekanan udara instrumen turun"}
+      }
+    },
+    "TR-1401": {
+      "asset_name": "Lube Oil Trim Cooler", "plant": "ZCU", "cls": "Class B",
+      "load_label": "Compressor Load", "load_unit": "T/H", "load_mean": 55.0,
+      "parameters": {
+        "oil_outlet_temp": {"label": "Oil Outlet Temperature", "unit": "°C", "baseline_min": 48.0, "baseline_max": 52.0, "alert": 58.0, "trip": 72.0,
+                   "failure_mode": "Fouling/scaling sisi air pendingin → suhu oli naik"},
+        "cw_dt": {"label": "Cooling Water dT", "unit": "°C", "baseline_min": 7.0, "baseline_max": 8.0, "alert": 5.0, "trip": 3.5,
+                   "failure_mode": "Penurunan heat transfer duty"}
+      }
+    }
+  }
+}
